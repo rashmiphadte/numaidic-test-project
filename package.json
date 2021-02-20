@@ -24,6 +24,9 @@
     "crypto": "^1.0.1",
     "express": "^4.17.1",
     "gulp-apidoc-swagger": "^0.2.2",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.5.0"
   }
 }
