@@ -4,8 +4,8 @@
   "description": "this is vehicle activity project",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "start": "sequelize db:migrate && node src/index.js",
+    "dev": "sequelize db:migrate && nodemon src/index.js"
   },
   "repository": {
     "type": "git",
