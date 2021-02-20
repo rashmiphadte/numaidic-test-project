@@ -1,0 +1,28 @@
+{
+  "name": "numaidic-test-project",
+  "version": "1.0.0",
+  "description": "this is vehicle activity project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rashmiphadte/numaidic-test-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rashmiphadte/numaidic-test-project/issues"
+  },
+  "homepage": "https://github.com/rashmiphadte/numaidic-test-project#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "crypto": "^1.0.1",
+    "express": "^4.17.1",
+    "gulp-apidoc-swagger": "^0.2.2",
+    "jsonwebtoken": "^8.5.1"
+  }
+}
