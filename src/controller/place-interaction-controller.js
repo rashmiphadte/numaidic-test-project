@@ -8,7 +8,16 @@ placeInteraction = (req, res) => {
     })
 }
 
+vehicleActivity = (req, res) => {
+    return placeInteractionModel.vehicleActivity(req, (error, result) => {
+        if (error) {
+            return res.status(400).send(error)
+        }
+        return res.status(200).send(result)
+    })
+}
 
 module.exports = {
-    placeInteraction
+    placeInteraction,
+    vehicleActivity
 }

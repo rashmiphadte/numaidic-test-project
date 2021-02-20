@@ -3,7 +3,8 @@ const app = express()
 const fs = require("fs")
 const port = process.env.PORT || 3000
 
-router = require('./route/vehicle');
+router = require('./route/place-interaction');
+router = require('./route/vehicle-activity');
 require("./db/database")
 
 const bodyparser = require('body-parser');
