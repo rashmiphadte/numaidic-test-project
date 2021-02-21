@@ -58,7 +58,7 @@ const punePolygon = [
 placeInteraction = (req, res) => {
     return models
         .findAll({
-            attributes: ['license', 'latitude', 'longitude', 'time', 'model', 'engine', 'chasis'],
+            attributes: ['license', 'time', 'latitude', 'longitude'],
             where: {
                 // use timestamp condition
                 time: {
@@ -67,7 +67,6 @@ placeInteraction = (req, res) => {
             }
         })
         .then((result) => {
-            //console.log(result)
             // once you get points with matching timestamp, get only those points falling between pune polygon
             let polygon = turf.polygon(punePolygon)
             let vehiclesWithinPolygon = []
