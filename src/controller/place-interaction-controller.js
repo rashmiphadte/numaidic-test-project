@@ -34,18 +34,25 @@
 
 const models = require('../models/').Vechicle;
 placeInteraction = (req, res) => {
+    console.log(req.query.startDate)
     return models
         .findAll({
+            attributes: ['license', 'latitude', 'longitude', 'time', 'model', 'engine', 'chasis'],
             where: {
-                license: 'ADTEST1'
+                time: {
+                    // $between: [new Date(req.query.startDate), new Date(req.query.endDate)],
+                    $lte: req.query.startDate,
+                    $gte: req.query.endDate,
+                }
             }
         })
         .then((result) => {
             console.log(result)
+            res.status(200).send(result)
         })
         .catch((error) => {
             console.log(error)
-            // res.status(400).send(error)
+            res.status(400).send(error)
         });
 }
 module.exports = {
