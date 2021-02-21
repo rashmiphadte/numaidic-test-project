@@ -34,7 +34,8 @@
 
 const models = require('../models/').Vechicle;
 const turf = require('@turf/turf')
-const Sequelize = require('sequelize')
+//const Sequelize = require('sequelize')
+const { Op } = require('sequelize')
 const punePolygon = [
     [
         [73.5598715332623, 18.7128121962049],
@@ -65,18 +66,25 @@ const punePolygon = [
 placeInteraction = (req, res) => {
     console.log(req.query.startDate)
     let points = []
+    let startDate = req.query.startDate +' 00:00:00+05:30';
+    let endDate = req.query.endDate +' 00:00:00+05:30';
+    console.log(startDate)
+    console.log(endDate)
+
     return models
         .findAll({
 
             attributes: ['license', 'latitude', 'longitude', 'time', 'model', 'engine', 'chasis'],
             where: {
-                license: 'ADTEST1'
+                //license: 'ADTEST1',
                 // use timestamp condition
-                // time: {
-                //     // $between: [new Date(req.query.startDate), new Date(req.query.endDate)],
-                //     $lte: req.query.startDate,
+                time: {
+                    //$between: [new Date(req.query.startDate), new Date(req.query.endDate)],
+                    //$between: [startDate, endDate],
+                     //$lte: req.query.startDate,
+                     [Op.between]: [startDate, endDate]
                 //     $gte: req.query.endDate,
-                // }
+                }
             }
         })
         .then((result) => {
