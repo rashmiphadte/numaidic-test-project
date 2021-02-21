@@ -1,16 +1,16 @@
 {
   "development": {
     "username": "postgres",
-    "password": "postgres",
-    "database": "PostGIS",
+    "password": "1234",
+    "database": "postgis",
     "host": "localhost",
     "port": 5432,
     "dialect": "postgres"
   },
   "dev": {
     "username": "postgres",
-    "password": "postgres",
-    "database": "PostGIS",
+    "password": "1234",
+    "database": "postgis",
     "host": "localhost",
     "port": 5432,
     "dialect": "postgres"
