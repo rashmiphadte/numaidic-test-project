@@ -32,7 +32,7 @@
 //     vehicleActivity
 // }
 
-const models = require('../models/').Vehicles;
+const models = require('../models/').Vechicle;
 placeInteraction = (req, res) => {
     return models
         .findAll({
