@@ -6,4 +6,5 @@ router.get('/', (req, res) => {
     return placeController.vehicleActivity(req, res)
 })
 
+
 module.exports = router;

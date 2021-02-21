@@ -35,7 +35,9 @@
 const models = require('../models/').Vechicle;
 const turf = require('@turf/turf')
 //const Sequelize = require('sequelize')
-const { Op } = require('sequelize')
+const {
+    Op
+} = require('sequelize')
 const punePolygon = [
     [
         [73.5598715332623, 18.7128121962049],
@@ -54,20 +56,13 @@ const punePolygon = [
     ]
 ]
 placeInteraction = (req, res) => {
-    let points = []
-    //let startDate = req.query.startDate +' 00:00:00+05:30';
-    //let endDate = req.query.endDate +' 00:00:00+05:30';
-    //2021-02-20 00:00:00+05:30
-    //console.log(req.query.start_tis)
-    //console.log(req.query.end_tis)
-
     return models
         .findAll({
             attributes: ['license', 'latitude', 'longitude', 'time', 'model', 'engine', 'chasis'],
             where: {
                 // use timestamp condition
                 time: {
-                    [Op.between]: [ req.query.start_tis,  req.query.end_tis]
+                    [Op.between]: [req.query.start_tis, req.query.end_tis]
                 }
             }
         })
@@ -104,10 +99,40 @@ placeInteraction = (req, res) => {
             res.status(200).send(vehiclesWithinPolygon)
         })
         .catch((error) => {
-            console.log(error)
+            // console.log(error)
             res.status(400).send(error)
         });
 }
+
+
+
+vehicleActivity = (req, res) => {
+    return models
+        .findAll({
+            attributes: ['license', 'latitude', 'longitude', 'time', 'model', 'engine', 'chasis'],
+            where: {
+                license: req.query.license,
+                time: {
+                    [Op.between]: [req.query.start_tis, req.query.end_tis]
+                }
+            }
+        }).then(result => {
+            let vehicleActivity = []
+            result.filter(ele => {
+                // to handle null latitude/longitude value
+                if (ele.latitude && ele.longitude) {
+                    vehicleActivity.push(ele)
+                }
+            })
+            return res.status(200).send(vehicleActivity)
+        }).catch(err => {
+            // console.log(err)
+            return res.status(400).send(err)
+        })
+}
+
+
 module.exports = {
-    placeInteraction
+    placeInteraction,
+    vehicleActivity
 };
